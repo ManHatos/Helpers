@@ -1,9 +1,9 @@
 /** Custom error class with helpful additions */
-export declare class Base extends Error {
+export declare class AppError extends Error {
     /** Error identifier */
     id: string;
     /** Error code name */
-    name: keyof typeof Codes;
+    code: Codes;
     /** User-facing and debug message */
     context: string;
     /** Emoji used for `context` */
@@ -27,34 +27,6 @@ export declare class Base extends Error {
     private path;
     is(id: string): boolean;
 }
-/** Eror codes used for `BotError` handling */
-export declare enum Codes {
-    /** Unknown error */
-    UNKNOWN = 0,
-    /** The resource has expired */
-    EXPIRED = 1,
-    /** Duplicate resource found */
-    DUPLICATE = 2,
-    /** Resource not found */
-    NOT_FOUND = 3,
-    /** Operation not allowed */
-    NOT_ALLOWED = 4,
-    /** Unauthorized access */
-    UNAUTHORIZED = 5,
-    /** Invalid input or request */
-    INVALID = 6,
-    /** Bad input or malformed request */
-    BAD_REQUEST = 7,
-    /** Unexpected internal error */
-    INTERNAL = 8,
-    /** Request timed out */
-    TIMEOUT = 9,
-    /** Conflicting resource state */
-    CONFLICT = 10,
-    /** Action is forbidden */
-    FORBIDDEN = 11,
-    /** Resource is rate limited */
-    TOO_MANY_REQUESTS = 12,
-    /** External unknown error */
-    EXTERNAL = 13
-}
+/** Eror codes used for `AppError` handling */
+type Codes = "UNKNOWN" | "EXPIRED" | "DUPLICATE" | "NOT_FOUND" | "NOT_ALLOWED" | "UNAUTHORIZED" | "INVALID" | "BAD_REQUEST" | "INTERNAL" | "TIMEOUT" | "CONFLICT" | "FORBIDDEN" | "TOO_MANY_REQUESTS" | "EXTERNAL";
+export {};

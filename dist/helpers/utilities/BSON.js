@@ -1,4 +1,4 @@
-import { Errors } from "../../helpers.js";
+import { AppError } from "../../helpers.js";
 /** BigInt JSON (BSON) (made up) is a helpful class to deal with JSON serialization with proper BigInt handling as well as interoperability with the native `JSON.parse` function for `BSON.text` */
 export class BSON {
     /** The serialized BSON object as a string */
@@ -33,8 +33,8 @@ export class BSON {
             });
         }
         catch (_) {
-            throw new Errors.Base({
-                code: Errors.Codes.INVALID,
+            throw new AppError({
+                code: "INVALID",
                 context: "Invalid BSON string provided",
             });
         }
