@@ -19,6 +19,7 @@ export declare class AppError extends Error {
          * the rest of the lines will be used as footnotes.
          * Dots are added and removed accordingly.
          * Unless a footnote ends with either `!` or `?`, a dot will be placed
+         * @note Use `%d` in footnotes to use the default error footnote
          */
         context: string;
         /** Emoji used for `context`, supports any Discord formattable emoji */

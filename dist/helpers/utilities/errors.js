@@ -12,7 +12,7 @@ export class AppError extends Error {
     at;
     constructor(error = {
         code: "UNKNOWN",
-        context: "An unknown error has occurred\nPlease try again shortly. If you continuously encounter such errors, please contact [Tycho](<https://discord.tychosystems.xyz>).",
+        context: "An unknown error has occurred\n%d",
     }) {
         super();
         this.id = crypto.randomUUID();
@@ -25,7 +25,12 @@ export class AppError extends Error {
             return (`### ${this.emoji} ${lines.shift()?.replace(/\.$/, "")}` +
                 (lines.length === 0
                     ? ""
-                    : "\n" + lines.map((line) => `-# ${line.replace(/(?<![\!\?])(\.|)$/, ".")}`).join("\n")));
+                    : "\n" +
+                        lines
+                            .map((line) => `-# ${line
+                            .replaceAll(/(?<!\\)\%d/g, "Please try again shortly. If you continuously encounter such errors, please contact [Tycho](<https://discord.tychosystems.xyz>).")
+                            .replace(/(?<![\!\?])(\.|)$/, ".")}`)
+                            .join("\n")));
         })();
         this.at = this.path(this.stack); // extract path from stack
         this.message = "";
