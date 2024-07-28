@@ -33,6 +33,7 @@ export class AppError extends Error {
                             .join("\n")));
         })();
         this.at = this.path(this.stack); // extract path from stack
+        // override native error
         this.message = "";
         this.stack = "";
     }
