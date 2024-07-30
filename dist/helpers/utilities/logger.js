@@ -6,7 +6,6 @@ export class Logger {
         const timestamp = color.cyan(new Date().toISOString());
         const level = getColor(levelType)(`[${levelType.toUpperCase()}]`);
         name = color.bold.white(`[${name}]`);
-        message = color.black(message);
         return `${timestamp} ${level} ${name}: ${message}`;
     };
     constructor(name) {
